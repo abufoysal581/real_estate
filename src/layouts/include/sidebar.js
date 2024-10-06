@@ -25,10 +25,11 @@ function Sidebar() {
       <div className="logo-header" data-background-color="dark">
         <a href="index.html" className="logo">
           <img
-            src="assets/img/kaiadmin/logo_light.svg"
+            src="assets/img/02 - PNG Property.png"
             alt="navbar brand"
             className="navbar-brand"
-            height="20"
+            height="100"
+            width="200"
           />
         </a>
         <div className="nav-toggle">
@@ -62,9 +63,8 @@ function Sidebar() {
             <div className="collapse" id="dashboard">
               <ul className="nav nav-collapse">
                 <li>
-                  <a href="../demo1/index.html">
-                    <span className="sub-item">Dashboard 1</span>
-                  </a>
+                <Link to="/" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">Dashboard 1</span></Link>
                 </li>
               </ul>
             </div>
@@ -78,55 +78,18 @@ function Sidebar() {
           <li className="nav-item">
             <a data-bs-toggle="collapse" href="#base">
               <i className="fas fa-layer-group"></i>
-              <p>Base</p>
+              <p>Properties</p>
               <span className="caret"></span>
             </a>
             <div className="collapse" id="base">
               <ul className="nav nav-collapse">
                 <li>
-                  <a href="components/avatars.html">
-                    <span className="sub-item">Avatars</span>
-                  </a>
+                <Link to="/Addproperty" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">Add property</span></Link>
                 </li>
                 <li>
-                  <a href="components/buttons.html">
-                    <span className="sub-item">Buttons</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/gridsystem.html">
-                    <span className="sub-item">Grid System</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/panels.html">
-                    <span className="sub-item">Panels</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/notifications.html">
-                    <span className="sub-item">Notifications</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/sweetalert.html">
-                    <span className="sub-item">Sweet Alert</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/font-awesome-icons.html">
-                    <span className="sub-item">Font Awesome Icons</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/simple-line-icons.html">
-                    <span className="sub-item">Simple Line Icons</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/typography.html">
-                    <span className="sub-item">Typography</span>
-                  </a>
+                <Link to="/Propertylist" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">Property list</span></Link>
                 </li>
               </ul>
             </div>
@@ -134,20 +97,18 @@ function Sidebar() {
           <li className="nav-item">
             <a data-bs-toggle="collapse" href="#sidebarLayouts">
               <i className="fas fa-th-list"></i>
-              <p>Sidebar Layouts</p>
+              <p>Property requests</p>
               <span className="caret"></span>
             </a>
             <div className="collapse" id="sidebarLayouts">
               <ul className="nav nav-collapse">
                 <li>
-                  <a href="sidebar-style-2.html">
-                    <span className="sub-item">Sidebar Style 2</span>
-                  </a>
+                <Link to="/Propertyrqstrent" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">For rent</span></Link>
                 </li>
                 <li>
-                  <a href="icon-menu.html">
-                    <span className="sub-item">Icon Menu</span>
-                  </a>
+                <Link to="/Propertyrqstbuy" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">For buying</span></Link>
                 </li>
               </ul>
             </div>
@@ -155,15 +116,19 @@ function Sidebar() {
           <li className="nav-item">
             <a data-bs-toggle="collapse" href="#forms">
               <i className="fas fa-pen-square"></i>
-              <p>Forms</p>
+              <p>Admins</p>
               <span className="caret"></span>
             </a>
             <div className="collapse" id="forms">
               <ul className="nav nav-collapse">
                 <li>
                   <a href="forms/forms.html">
-                    <span className="sub-item">Basic Form</span>
+                    <span className="sub-item">Master admin</span>
                   </a>
+                </li>
+                <li>
+                <Link to="/Agents" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">Agents</span></Link>
                 </li>
               </ul>
             </div>
@@ -171,20 +136,14 @@ function Sidebar() {
           <li className="nav-item">
             <a data-bs-toggle="collapse" href="#tables">
               <i className="fas fa-table"></i>
-              <p>Tables</p>
+              <p>Rented property</p>
               <span className="caret"></span>
             </a>
             <div className="collapse" id="tables">
               <ul className="nav nav-collapse">
                 <li>
-                  <a href="tables/tables.html">
-                    <span className="sub-item">Basic Table</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="tables/datatables.html">
-                    <span className="sub-item">Datatables</span>
-                  </a>
+                <Link to="/Rentedproperty" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">Rented property list</span></Link>
                 </li>
               </ul>
             </div>
@@ -192,19 +151,15 @@ function Sidebar() {
           <li className="nav-item">
             <a data-bs-toggle="collapse" href="#maps">
               <i className="fas fa-map-marker-alt"></i>
-              <p>Maps</p>
+              <p>Sold property</p>
               <span className="caret"></span>
             </a>
             <div className="collapse" id="maps">
               <ul className="nav nav-collapse">
                 <li>
-                  <a href="maps/googlemaps.html">
-                    <span className="sub-item">Google Maps</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="maps/jsvectormap.html">
-                    <span className="sub-item">Jsvectormap</span>
+                  <a>
+                   <Link to="/Soldproperty" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">Sold property list</span></Link>
                   </a>
                 </li>
               </ul>
@@ -213,88 +168,40 @@ function Sidebar() {
           <li className="nav-item">
             <a data-bs-toggle="collapse" href="#charts">
               <i className="far fa-chart-bar"></i>
-              <p>Charts</p>
+              <p>Payments & Installments</p>
               <span className="caret"></span>
             </a>
             <div className="collapse" id="charts">
               <ul className="nav nav-collapse">
                 <li>
                   <a href="charts/charts.html">
-                    <span className="sub-item">Chart Js</span>
+                  <Link to="/Paymentssold" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">Sold property payments & installments</span></Link>
                   </a>
                 </li>
                 <li>
                   <a href="charts/sparkline.html">
-                    <span className="sub-item">Sparkline</span>
+                  <Link to="/Paymentsrented" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">Rented property payments & installments</span></Link>
                   </a>
                 </li>
               </ul>
             </div>
           </li>
-          <li className="nav-item">
-            <a href="widgets.html">
-              <i className="fas fa-desktop"></i>
-              <p>Widgets</p>
-              <span className="badge badge-success">4</span>
-            </a>
-          </li>
+
           <li className="nav-item">
             <a href="../../documentation/index.html">
               <i className="fas fa-file"></i>
-              <p>Documentation</p>
-              <span className="badge badge-secondary">1</span>
+              <Link to="/Invoices" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">Invoices</span></Link>
             </a>
           </li>
           <li className="nav-item">
-            <a data-bs-toggle="collapse" href="#submenu">
+            <a>
               <i className="fas fa-bars"></i>
-              <p>Menu Levels</p>
-              <span className="caret"></span>
+              <Link to="/Clients" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">Clients</span></Link>
             </a>
-            <div className="collapse" id="submenu">
-              <ul className="nav nav-collapse">
-                <li>
-                  <a data-bs-toggle="collapse" href="#subnav1">
-                    <span className="sub-item">Level 1</span>
-                    <span className="caret"></span>
-                  </a>
-                  <div className="collapse" id="subnav1">
-                    <ul className="nav nav-collapse subnav">
-                      <li>
-                        <a href="#">
-                          <span className="sub-item">Level 2</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <span className="sub-item">Level 2</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <a data-bs-toggle="collapse" href="#subnav2">
-                    <span className="sub-item">Level 1</span>
-                    <span className="caret"></span>
-                  </a>
-                  <div className="collapse" id="subnav2">
-                    <ul className="nav nav-collapse subnav">
-                      <li>
-                        <a href="#">
-                          <span className="sub-item">Level 2</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <a href="#">
-                    <span className="sub-item">Level 1</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
         </ul>
       </div>

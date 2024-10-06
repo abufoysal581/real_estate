@@ -25,7 +25,7 @@ function Header() {
       <div className="logo-header" data-background-color="dark">
         <a href="index.html" className="logo">
           <img
-            src="assets/img/kaiadmin/logo_light.svg"
+            src="assets/img/02 - PNG Property.png"
             alt="navbar brand"
             className="navbar-brand"
             height="20"
@@ -390,7 +390,12 @@ function Header() {
                   <div className="dropdown-divider"></div>
                   <a className="dropdown-item" href="#">Account Setting</a>
                   <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="#">Logout</a>
+                  <li onClick={activeMenu}s className={`sidebar-item ${isLinkActive("/Login")}`} style={{textDecoration: "none", textAlign: "center"}}>
+                                <Link to={"/login"} className={`sidebar-link`}>
+                                    <i data-feather="home" width="20"></i> 
+                                    <span>Logout</span>
+                                </Link>
+                            </li>
                 </li>
               </div>
             </ul>

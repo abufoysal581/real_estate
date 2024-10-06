@@ -32,42 +32,31 @@ function Register() {
         </div>
         <form onSubmit={handleSubmit}>
             <div className="row">
-                <div className="col-md-6 col-12">
+                <div className="col-md-12 col-12">
                     <div className="form-group">
-                        <label for="first-name-column">First Name</label>
-                        <input type="text" id="first-name-column" className="form-control"  name="first_name" onChange={handleChange}/>
+                        <label htmlFor="first-name">Full Name</label>
+                        <input type="text" id="first-name" className="form-control" onChange={handleChange} name="name"/>
                     </div>
                 </div>
-                <div className="col-md-6 col-12">
+                <div className="col-md-12 col-12">
                     <div className="form-group">
-                        <label for="last-name-column">Last Name</label>
-                        <input type="text" id="last-name-column" className="form-control"  name="last_name" onChange={handleChange}/>
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id="email" className="form-control" onChange={handleChange} name="email"/>
                     </div>
                 </div>
-                <div className="col-md-6 col-12">
+                <div className="col-md-12 col-12">
                     <div className="form-group">
-                        <label for="username-column">Username</label>
-                        <input type="text" id="username-column" className="form-control" name="username" onChange={handleChange}/>
+                        <label htmlFor="password">Password</label>
+                        <input type="text" id="password" className="form-control" onChange={handleChange} name="password"/>
                     </div>
                 </div>
-                <div className="col-md-6 col-12">
+                <div className="col-md-12 col-12">
                     <div className="form-group">
-                        <label for="country-floating">Password</label>
-                        <input type="text" id="country-floating" className="form-control" name="password" onChange={handleChange}/>
+                        <label htmlFor="password">Confirm Password</label>
+                        <input type="text" id="password" className="form-control" onChange={handleChange} name="c_password"/>
                     </div>
                 </div>
-                <div className="col-md-6 col-12">
-                    <div className="form-group">
-                        <label for="company-column">Phone</label>
-                        <input type="text" id="company-column" className="form-control" name="phone" onChange={handleChange}/>
-                    </div>
-                </div>
-                <div className="col-md-6 col-12">
-                    <div className="form-group">
-                        <label for="email-id-column">Email</label>
-                        <input type="email" id="email-id-column" className="form-control" name="email" onChange={handleChange}/>
-                    </div>
-                </div>
+               
             </div>
             <Link to="/login">Have an account? Login</Link>
             <div className="clearfix">
