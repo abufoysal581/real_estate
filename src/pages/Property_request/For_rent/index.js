@@ -1,12 +1,12 @@
 import React from 'react'
-import AdminLayout from '../../layouts/AdminLayout'
+import AdminLayout from '../../../layouts/AdminLayout'
 
-function Propertyrqstbuy() {
+function For_rent() {
   return (
     <AdminLayout>
 
 <div className="container mt-5">
-        <h2 className="mb-4">Property Purchase Requests</h2>
+        <h2 className="mb-4">Property Rental Requests</h2>
         <div className="table-responsive">
             <table className="table table-bordered table-hover">
                 <thead className="table-dark">
@@ -17,7 +17,7 @@ function Propertyrqstbuy() {
                         <th>Phone</th>
                         <th>Requested Property</th>
                         <th>Request Date</th>
-                        <th>Offer Price</th>
+                        <th>Rental Duration</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -31,7 +31,7 @@ function Propertyrqstbuy() {
                         <td>+1 555-1234</td>
                         <td>Luxury Apartment - New York, NY</td>
                         <td>2024-09-01</td>
-                        <td>$2,000,000</td>
+                        <td>12 months</td>
                         <td><span className="badge bg-warning">Pending</span></td>
                         <td>
                             <a href="#" className="btn btn-success btn-sm">Approve</a>
@@ -46,7 +46,7 @@ function Propertyrqstbuy() {
                         <td>+1 555-5678</td>
                         <td>Modern House - Los Angeles, CA</td>
                         <td>2024-09-03</td>
-                        <td>$1,500,000</td>
+                        <td>24 months</td>
                         <td><span className="badge bg-success">Approved</span></td>
                         <td>
                             <a href="#" className="btn btn-info btn-sm">View</a>
@@ -61,7 +61,7 @@ function Propertyrqstbuy() {
                         <td>+1 555-9876</td>
                         <td>Office Space - Chicago, IL</td>
                         <td>2024-09-10</td>
-                        <td>$1,000,000</td>
+                        <td>6 months</td>
                         <td><span className="badge bg-danger">Rejected</span></td>
                         <td>
                             <a href="#" className="btn btn-info btn-sm">View</a>
@@ -72,11 +72,10 @@ function Propertyrqstbuy() {
             </table>
         </div>
     </div>
-
   
 
     </AdminLayout>       
   )
 }
 
-export default Propertyrqstbuy
+export default For_rent

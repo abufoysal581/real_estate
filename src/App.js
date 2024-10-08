@@ -5,10 +5,10 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 
 import Dashboard from './pages/Dashboard';
-import Addproperty from './pages/Addproperty';
-import Propertylist from './pages/Propertylist';
-import Propertyrqstrent from './pages/Propertyrqstrent';
-import Propertyrqstbuy from './pages/Propertyrqstbuy';
+import Addproperty from './pages/Property/Addproperty';
+import Property from './pages/Property';
+import For_rent from './pages/Property_request/For_rent';
+import For_buying from './pages/Property_request/For_buying';
 import Agents from './pages/Agents';
 import Rentedproperty from './pages/Rentedproperty';
 import Soldproperty from './pages/Soldproperty';
@@ -33,27 +33,27 @@ function App() {
             </Protected>
           } />
 
-          <Route path={"/addproperty"} element={
+          <Route path={"/Property/Addproperty"} element={
             <Protected isSignedIn={isSignedIn} >
               <Addproperty />
             </Protected>
           } />
 
-          <Route path={"/propertylist"} element={
+          <Route path={"/Property"} element={
             <Protected isSignedIn={isSignedIn} >
-              <Propertylist />
+              <Property />
             </Protected>
           } />
 
-          <Route path={"/propertyrqstrent"} element={
+          <Route path={"/Property_request/For_rent"} element={
             <Protected isSignedIn={isSignedIn} >
-              <Propertyrqstrent />
+              <For_rent />
             </Protected>
           } />
 
-          <Route path={"/propertyrqstbuy"} element={
+          <Route path={"/Property_request/For_buying"} element={
             <Protected isSignedIn={isSignedIn} >
-              <Propertyrqstbuy />
+              <For_buying />
             </Protected>
           } />
 
