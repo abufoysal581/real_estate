@@ -23,7 +23,7 @@ function Sidebar() {
     <div className="sidebar-logo">
       {/* <!-- Logo Header --> */}
       <div className="logo-header" data-background-color="dark">
-        <a href="index.html" className="logo">
+        <a href="" className="logo">
           <img
             src="assets/img/02 - PNG Property.png"
             alt="navbar brand"
@@ -84,11 +84,11 @@ function Sidebar() {
             <div className="collapse" id="base">
               <ul className="nav nav-collapse">
                 <li>
-                <Link to="/Addproperty" className="waves-effect waves-dark" aria-expanded="false"><i
+                <Link to="/Property/Addproperty" className="waves-effect waves-dark" aria-expanded="false"><i
                 className="fa fa-question-circle"></i><span className="hide-menu">Add property</span></Link>
                 </li>
                 <li>
-                <Link to="/Propertylist" className="waves-effect waves-dark" aria-expanded="false"><i
+                <Link to="/Property" className="waves-effect waves-dark" aria-expanded="false"><i
                 className="fa fa-question-circle"></i><span className="hide-menu">Property list</span></Link>
                 </li>
               </ul>

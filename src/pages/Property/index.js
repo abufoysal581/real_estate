@@ -34,6 +34,12 @@ function Property() {
                         <th>Location</th>
                         <th>Price</th>
                         <th>Type</th>
+                        <th>Listing Type</th>
+                        <th>Bedrooms</th>
+                        <th>Bathrooms</th>
+                        <th>area</th>
+                        <th>parking</th>
+                        <th>description</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -46,6 +52,12 @@ function Property() {
                                             <td>{d.location}</td>
                                             <td>{d.price}</td>
                                             <td>{d.type}</td>
+                                            <td>{d.listing_type}</td>
+                                            <td>{d.bedrooms}</td>
+                                            <td>{d.bathrooms}</td>
+                                            <td>{d.area}</td>
+                                            <td>{d.parking}</td>
+                                            <td>{d.description}</td>
                                             <td>
                                                 <Link to={`/property/edit/${d.id}`} className='btn btn-info' >Edit</Link>
                                                 <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>

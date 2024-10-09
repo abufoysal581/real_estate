@@ -33,7 +33,12 @@ function App() {
             </Protected>
           } />
 
-          <Route path={"/Property/Addproperty"} element={
+          <Route path={"/property/addproperty"} element={
+            <Protected isSignedIn={isSignedIn} >
+              <Addproperty />
+            </Protected>
+          } />
+          <Route path={"/property/edit/:id"} element={
             <Protected isSignedIn={isSignedIn} >
               <Addproperty />
             </Protected>

@@ -1,23 +1,74 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import AdminLayout from '../../../layouts/AdminLayout'
+import { useNavigate } from 'react-router-dom';
+import {useParams} from "react-router-dom";
 
 function Addproperty() {
+
+    const [inputs, setInputs] = useState({id:'',image:'',property_title:'',location:'',price:'',type:'',listing_type:'',bedrooms:'',bathrooms:'', area:'', parking:'',description:''});
+    const navigate=useNavigate();
+    const {id} = useParams();
+    
+    function getDatas(){
+        axios.get(`${process.env.REACT_APP_API_URL}/property/${id}`).then(function(response) {
+            setInputs(response.data.data);
+        });
+    }
+
+    useEffect(() => {
+        if(id){
+            getDatas();
+        }
+    }, []);
+
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values, [name]: value}));
+    }
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        console.log(inputs)
+        
+        try{
+            let apiurl='';
+            if(inputs.id!=''){
+                apiurl=`/property/edit/${inputs.id}`;
+            }else{
+                apiurl=`/property/create`;
+            }
+            
+            let response= await axios({
+                method: 'post',
+                responsiveTYpe: 'json',
+                url: `${process.env.REACT_APP_API_URL}${apiurl}`,
+                data: inputs
+            });
+            navigate('/property')
+        } 
+        catch(e){
+            console.log(e);
+        }
+    }
+
   return (
     <AdminLayout>
 
 <div className="container mt-5">
         <h2 className="mb-4">Add New Property</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
             {/* <!-- Property Title and Type --> */}
             <div className="row mb-3">
                 <div className="col-md-6">
                     <label for="propertyTitle" className="form-label">Property Title</label>
-                    <input type="text" className="form-control" id="propertyTitle" placeholder="Enter property title" required/>
+                    <input type="text" className="form-control" id="propertyTitle" defaultValue={inputs.property_title} name="property_title" onChange={handleChange} placeholder="Property Title" required/>
                 </div>
                 <div className="col-md-6">
                     <label for="propertyType" className="form-label">Property Type</label>
-                    <select className="form-select" id="propertyType" required>
-                        <option selected disabled>Choose type</option>
+                    <select className="form-select" value={inputs.type} name="type" id="propertyType"  placeholder="Type"  onChange={handleChange} required>
+                        <option value="">Choose type</option>
                         <option value="apartment">Apartment</option>
                         <option value="house">House</option>
                         <option value="commercial">Commercial</option>
@@ -30,49 +81,23 @@ function Addproperty() {
             <div className="row mb-3">
                 <div className="col-md-6">
                     <label for="listingType" className="form-label">Listing Type</label>
-                    <select className="form-select" id="listingType" required>
-                        <option selected disabled>Choose listing type</option>
+                    <select className="form-select" value={inputs.listing_type} id="listingType" name="listing_type" onChange={handleChange}   placeholder="Listing Type"   required>
+                        <option value="">Choose listing type</option>
                         <option value="sale">For Sale</option>
                         <option value="rent">For Rent</option>
                     </select>
                 </div>
                 <div className="col-md-6">
                     <label for="price" className="form-label">Price</label>
-                    <input type="number" className="form-control" id="price" placeholder="Enter price" required/>
+                    <input type="number" className="form-control" id="price" defaultValue={inputs.price} name="price" onChange={handleChange} placeholder="Price" required/>
                 </div>
             </div>
 
             {/* <!-- Location --> */}
             <div className="row mb-3">
                 <div className="col-md-12">
-                    <label for="address" className="form-label">Address</label>
-                    <input type="text" className="form-control" id="address" placeholder="Enter full address" required/>
-                </div>
-            </div>
-            <div className="row mb-3">
-                <div className="col-md-6">
-                    <label for="city" className="form-label">City</label>
-                    <input type="text" className="form-control" id="city" placeholder="Enter city" required/>
-                </div>
-                <div className="col-md-3">
-                    <label for="state" className="form-label">State</label>
-                    <input type="text" className="form-control" id="state" placeholder="Enter state" required/>
-                </div>
-                <div className="col-md-3">
-                    <label for="postalCode" className="form-label">Postal Code</label>
-                    <input type="text" className="form-control" id="postalCode" placeholder="Enter postal code" required/>
-                </div>
-            </div>
-
-            {/* <!-- Map Location (optional) --> */}
-            <div className="row mb-3">
-                <div className="col-md-6">
-                    <label for="latitude" className="form-label">Latitude</label>
-                    <input type="text" className="form-control" id="latitude" placeholder="Latitude"/>
-                </div>
-                <div className="col-md-6">
-                    <label for="longitude" className="form-label">Longitude</label>
-                    <input type="text" className="form-control" id="longitude" placeholder="Longitude"/>
+                    <label for="address" className="form-label">Location</label>
+                    <input type="text" className="form-control" id="address"  defaultValue={inputs.location} name="location" onChange={handleChange} placeholder="location"  required/>
                 </div>
             </div>
 
@@ -80,51 +105,38 @@ function Addproperty() {
             <div className="row mb-3">
                 <div className="col-md-3">
                     <label for="bedrooms" className="form-label">Bedrooms</label>
-                    <input type="number" className="form-control" id="bedrooms" min="1" placeholder="Enter bedrooms" required/>
+                    <input type="number" className="form-control" id="bedrooms" min="1" defaultValue={inputs.bedrooms} name="bedrooms" onChange={handleChange} placeholder="Enter bedrooms" required/>
                 </div>
                 <div className="col-md-3">
                     <label for="bathrooms" className="form-label">Bathrooms</label>
-                    <input type="number" className="form-control" id="bathrooms" min="1" placeholder="Enter bathrooms" required/>
+                    <input type="number" className="form-control" id="bathrooms" min="1" defaultValue={inputs.bathrooms} name="bathrooms" onChange={handleChange} placeholder="Enter bathrooms" required/>
                 </div>
                 <div className="col-md-3">
                     <label for="area" className="form-label">Area (sq ft)</label>
-                    <input type="number" className="form-control" id="area" placeholder="Enter area" required/>
+                    <input type="number" className="form-control" id="area" defaultValue={inputs.area} name="area" onChange={handleChange} placeholder="Enter area" required/>
                 </div>
                 <div className="col-md-3">
                     <label for="parkingSpaces" className="form-label">Parking Spaces</label>
-                    <input type="number" className="form-control" id="parkingSpaces" placeholder="Enter parking spaces"/>
+                    <input type="number" className="form-control" id="parkingSpaces" defaultValue={inputs.parking} name="parking" onChange={handleChange} placeholder="Enter parking spaces"/>
                 </div>
             </div>
 
             {/* <!-- Description --> */}
             <div className="mb-3">
                 <label for="shortDescription" className="form-label">Short Description</label>
-                <textarea className="form-control" id="shortDescription" rows="2" placeholder="Enter a short description" required></textarea>
+                <textarea className="form-control" id="shortDescription" rows="2" defaultValue={inputs.description} name="description" onChange={handleChange} placeholder="Enter a short description" required></textarea>
             </div>
-            <div className="mb-3">
-                <label for="detailedDescription" className="form-label">Detailed Description</label>
-                <textarea className="form-control" id="detailedDescription" rows="4" placeholder="Enter a detailed description"></textarea>
-            </div>
+           
 
             {/* <!-- Media Uploads --> */}
             <div className="mb-3">
                 <label for="propertyImages" className="form-label">Upload Property Images</label>
-                <input type="file" className="form-control" id="propertyImages" multiple accept="image/*"/>
+                <input type="file" className="form-control" id="propertyImages"  defaultValue={inputs.image} name="image" onChange={handleChange} placeholder="image"  multiple accept="image/*"/>
             </div>
-            <div className="mb-3">
-                <label for="videoLink" className="form-label">Video Tour Link</label>
-                <input type="url" className="form-control" id="videoLink" placeholder="Enter video tour link (YouTube, Vimeo)"/>
-            </div>
+           
 
-            {/* <!-- SEO Metadata (Optional) --> */}
-            <div className="mb-3">
-                <label for="metaTitle" className="form-label">Meta Title</label>
-                <input type="text" className="form-control" id="metaTitle" placeholder="Enter meta title for SEO"/>
-            </div>
-            <div className="mb-3">
-                <label for="metaDescription" className="form-label">Meta Description</label>
-                <textarea className="form-control" id="metaDescription" rows="2" placeholder="Enter meta description for SEO"></textarea>
-            </div>
+
+
 
             {/* <!-- Submit Buttons --> */}
             <div className="d-flex justify-content-between">
