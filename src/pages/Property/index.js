@@ -29,7 +29,7 @@ function Property() {
             <table class="table table-bordered table-hover">
                 <thead class="table-dark">
                     <tr>
-                        <th>Image</th>
+                        
                         <th>Property Title</th>
                         <th>Location</th>
                         <th>Price</th>
@@ -47,7 +47,7 @@ function Property() {
                                     {data && data.map((d, key) =>
                                         <tr key={d.id}>
                                          
-                                            <td>{d.image}</td>
+                                            
                                             <td>{d.property_title}</td>
                                             <td>{d.location}</td>
                                             <td>{d.price}</td>
