@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import AdminLayout from '../../../layouts/AdminLayout'
+import { Link } from 'react-router-dom';
 
 function For_rent() {
+
+    const[data, setData]=useState([]);
+    useEffect(() => {
+        getDatas();
+    }, []);
+
+    function getDatas() {
+        axios.get(`${process.env.REACT_APP_API_URL}/requestsforrent`).then(function(response) {
+            setData(response.data.data);
+        });
+    }
+    const deleteData = (id) => {
+        axios.delete(`${process.env.REACT_APP_API_URL}/requestsforrent/${id}`).then(function(response){
+            getDatas();
+        });
+    }
+
   return (
     <AdminLayout>
 
@@ -16,59 +35,33 @@ function For_rent() {
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Requested Property</th>
+                        <th>Requested Property ID</th>
                         <th>Request Date</th>
                         <th>Rental Duration</th>
-                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {/* <!-- Request Item 1 --> */}
-                    <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>johndoe@example.com</td>
-                        <td>+1 555-1234</td>
-                        <td>Luxury Apartment - New York, NY</td>
-                        <td>2024-09-01</td>
-                        <td>12 months</td>
-                        <td><span className="badge bg-warning">Pending</span></td>
-                        <td>
-                            <a href="#" className="btn btn-success btn-sm">Approve</a>
-                            <a href="#" className="btn btn-danger btn-sm">Reject</a>
-                        </td>
-                    </tr>
-                    {/* <!-- Request Item 2 --> */}
-                    <tr>
-                        <td>2</td>
-                        <td>Jane Smith</td>
-                        <td>janesmith@example.com</td>
-                        <td>+1 555-5678</td>
-                        <td>Modern House - Los Angeles, CA</td>
-                        <td>2024-09-03</td>
-                        <td>24 months</td>
-                        <td><span className="badge bg-success">Approved</span></td>
-                        <td>
-                            <a href="#" className="btn btn-info btn-sm">View</a>
-                            <a href="#" className="btn btn-secondary btn-sm">Cancel</a>
-                        </td>
-                    </tr>
-                    {/* <!-- Request Item 3 --> */}
-                    <tr>
-                        <td>3</td>
-                        <td>Emily Davis</td>
-                        <td>emilydavis@example.com</td>
-                        <td>+1 555-9876</td>
-                        <td>Office Space - Chicago, IL</td>
-                        <td>2024-09-10</td>
-                        <td>6 months</td>
-                        <td><span className="badge bg-danger">Rejected</span></td>
-                        <td>
-                            <a href="#" className="btn btn-info btn-sm">View</a>
-                            <a href="#" className="btn btn-secondary btn-sm">Delete</a>
-                        </td>
-                    </tr>
-                </tbody>
+                    {data && data.map((d, key) =>
+                                        <tr key={d.id}>
+                                         
+                                            <td>{d.id}</td>
+                                            <td>{d.client_name}</td>
+                                            <td>{d.email}</td>
+                                            <td>{d.phone}</td>
+                                            <td>{d.property_title}</td>
+                                            <td>{d.property_id}</td>
+                                            <td>{d.request_date}</td>
+                                            <td>{d.rental_duration}</td>
+                                            
+                                            <td>
+                                                <Link to={`/requestsforrent/edit/${d.id}`} className='btn btn-info' >Edit</Link>
+                                                <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Decline</button>
+                                            </td>
+                                        </tr>
+                                    )}
+                 </tbody>
             </table>
         </div>
     </div>

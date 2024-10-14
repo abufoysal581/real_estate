@@ -103,11 +103,11 @@ function Sidebar() {
             <div className="collapse" id="sidebarLayouts">
               <ul className="nav nav-collapse">
                 <li>
-                <Link to="/Propertyrqstrent" className="waves-effect waves-dark" aria-expanded="false"><i
+                <Link to="/Property_request/For_rent" className="waves-effect waves-dark" aria-expanded="false"><i
                 className="fa fa-question-circle"></i><span className="hide-menu">For rent</span></Link>
                 </li>
                 <li>
-                <Link to="/Propertyrqstbuy" className="waves-effect waves-dark" aria-expanded="false"><i
+                <Link to="/Property_request/For_buying" className="waves-effect waves-dark" aria-expanded="false"><i
                 className="fa fa-question-circle"></i><span className="hide-menu">For buying</span></Link>
                 </li>
               </ul>

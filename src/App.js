@@ -44,19 +44,19 @@ function App() {
             </Protected>
           } />
 
-          <Route path={"/Property"} element={
+          <Route path={"/property"} element={
             <Protected isSignedIn={isSignedIn} >
               <Property />
             </Protected>
           } />
 
-          <Route path={"/Property_request/For_rent"} element={
+          <Route path={"/property_request/For_rent"} element={
             <Protected isSignedIn={isSignedIn} >
               <For_rent />
             </Protected>
           } />
 
-          <Route path={"/Property_request/For_buying"} element={
+          <Route path={"/property_request/For_buying"} element={
             <Protected isSignedIn={isSignedIn} >
               <For_buying />
             </Protected>
