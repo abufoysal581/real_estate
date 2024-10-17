@@ -32,6 +32,7 @@ function For_rent() {
                     <tr>
                         <th>#</th>
                         <th>Client Name</th>
+                        <th>Client ID</th>
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Requested Property</th>
@@ -48,6 +49,7 @@ function For_rent() {
                                          
                                             <td>{d.id}</td>
                                             <td>{d.client_name}</td>
+                                            <td>{d.client_id}</td>
                                             <td>{d.email}</td>
                                             <td>{d.phone}</td>
                                             <td>{d.property_title}</td>
