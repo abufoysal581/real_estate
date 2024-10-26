@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../components/axios';
 import AdminLayout from '../../layouts/AdminLayout';
 import { Link } from 'react-router-dom';
 
@@ -31,6 +31,7 @@ function Property() {
                     <tr>
                         <th>#</th>
                         <th>Property Title</th>
+                        <th>Image</th>
                         <th>Location</th>
                         <th>Price</th>
                         <th>Type</th>
@@ -44,27 +45,34 @@ function Property() {
                     </tr>
                 </thead>
                 <tbody>
-                                    {data && data.map((d, key) =>
-                                        <tr key={d.id}>
-                                         
-                                            <td>{d.id}</td>
-                                            <td>{d.property_title}</td>
-                                            <td>{d.location}</td>
-                                            <td>{d.price}</td>
-                                            <td>{d.type}</td>
-                                            <td>{d.listing_type}</td>
-                                            <td>{d.bedrooms}</td>
-                                            <td>{d.bathrooms}</td>
-                                            <td>{d.area}</td>
-                                            <td>{d.parking}</td>
-                                            <td>{d.description}</td>
-                                            <td>
-                                                <Link to={`/property/edit/${d.id}`} className='btn btn-info' >Edit</Link>
-                                                <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>
-                                            </td>
-                                        </tr>
-                                    )}
-                                    </tbody>
+                    {data && data.map((d, key) =>
+                        <tr key={d.id}>
+                            
+                            <td>{d.id}</td>
+                            <td>{d.property_title}</td>
+                            <td>
+                                {
+                                    d?.image?.split(',').map((src, i) => (
+                                        <img src={`${process.env.REACT_APP_BACKEND_URL}/addproperty/${src}`} alt="No Image" width="100%" height="50%" />
+                                    ))
+                                }
+                            </td>
+                            <td>{d.location}</td>
+                            <td>{d.price}</td>
+                            <td>{d.type}</td>
+                            <td>{d.listing_type}</td>
+                            <td>{d.bedrooms}</td>
+                            <td>{d.bathrooms}</td>
+                            <td>{d.area}</td>
+                            <td>{d.parking}</td>
+                            <td>{d.description}</td>
+                            <td>
+                                <Link to={`/property/edit/${d.id}`} className='btn btn-info' >Edit</Link>
+                                <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
             </table>
         </div>
     </div>

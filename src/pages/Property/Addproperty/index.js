@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../../components/axios';
 import AdminLayout from '../../../layouts/AdminLayout'
 import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
@@ -8,6 +8,7 @@ function Addproperty() {
 
     const [inputs, setInputs] = useState({id:'',image:'',property_title:'',location:'',price:'',type:'',listing_type:'',bedrooms:'',bathrooms:'', area:'', parking:'',description:''});
     const navigate=useNavigate();
+    const [selectedFiles, setSelectedFiles] = useState([]); // For image
     const {id} = useParams();
     
     function getDatas(){
@@ -27,14 +28,30 @@ function Addproperty() {
         const value = event.target.value;
         setInputs(values => ({...values, [name]: value}));
     }
+     // Handle file input for images
+     const handleFileChange = (e) => {
+        setSelectedFiles(e.target.files);
+    }
 
     const handleSubmit = async(e) => {
         e.preventDefault();
         console.log(inputs)
+
+        const formData = new FormData();
+
+        // Append images to formData
+        for (let i = 0; i < selectedFiles.length; i++) {
+            formData.append('files[]', selectedFiles[i]);
+        }
+
+        // Append other form inputs to formData
+        for (const property in inputs) {
+            formData.append(property, inputs[property]);
+        }
         
         try{
             let apiurl='';
-            if(inputs.id!=''){
+            if(inputs.id !==''){
                 apiurl=`/property/edit/${inputs.id}`;
             }else{
                 apiurl=`/property/create`;
@@ -44,7 +61,10 @@ function Addproperty() {
                 method: 'post',
                 responsiveTYpe: 'json',
                 url: `${process.env.REACT_APP_API_URL}${apiurl}`,
-                data: inputs
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
             });
             navigate('/property')
         } 
@@ -131,7 +151,8 @@ function Addproperty() {
             {/* <!-- Media Uploads --> */}
             <div className="mb-3">
                 <label for="propertyImages" className="form-label">Upload Property Images</label>
-                <input type="file" className="form-control" id="propertyImages"  defaultValue={inputs.image} name="image" onChange={handleChange} placeholder="image"  multiple accept="image/*"/>
+                <input type="file" id="image" className="form-control" defaultValue={inputs.image} name="image" multiple onChange={handleFileChange} />
+                {/* <input type="file" className="form-control" id="propertyImages"  defaultValue={inputs.image} name="image" onChange={handleChange} placeholder="image"  multiple accept="image/*"/> */}
             </div>
            
 
