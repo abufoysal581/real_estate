@@ -95,6 +95,12 @@ function Sidebar() {
             </div>
           </li>
           <li className="nav-item">
+            <a>
+              <Link to="/Allocations" className="waves-effect waves-dark" aria-expanded="false"><i
+                className="fa fa-question-circle"></i><span className="hide-menu">Allocations</span></Link>
+            </a>
+          </li>
+          <li className="nav-item">
             <a data-bs-toggle="collapse" href="#sidebarLayouts">
               <i className="fas fa-th-list"></i>
               <p>Property requests</p>

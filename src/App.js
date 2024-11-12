@@ -16,7 +16,9 @@ import Paymentssold from './pages/Paymentssold';
 import Paymentsrented from './pages/Paymentsrented';
 import Invoices from './pages/Invoices';
 import Clients from './pages/Clients';
-
+import Catagory from './pages/Catagory';
+import CatagoryAdd from './pages/Catagory/CatagoryAdd';
+import Allocations from './pages/Allocations'
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Protected from './components/protected';
@@ -101,6 +103,24 @@ function App() {
           <Route path={"/clients"} element={
             <Protected isSignedIn={isSignedIn} >
               <Clients />
+            </Protected>
+          } />
+
+          <Route path={"/catagory"} element={
+            <Protected isSignedIn={isSignedIn} >
+              <Catagory />
+            </Protected>
+          } />
+
+          <Route path={"/catagory/catagoryadd"} element={
+            <Protected isSignedIn={isSignedIn} >
+              <CatagoryAdd />
+            </Protected>
+          } />
+
+          <Route path={"/allocations"} element={
+            <Protected isSignedIn={isSignedIn} >
+              <Allocations />
             </Protected>
           } />
         
