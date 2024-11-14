@@ -36,31 +36,28 @@ function For_buying() {
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Requested Property</th>
-                        <th>Requested Property ID</th>
                         <th>Request Date</th>
-                   
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
 
                 {data && data.map((d, key) =>
-                                   <tr key={d.id}>
-                                         
-                                         <td>{d.id}</td>
-                                         <td>{d.client_name}</td>
-                                         <td>{d.client_id}</td>
-                                         <td>{d.email}</td>
-                                         <td>{d.phone}</td>
-                                         <td>{d.property_title}</td>
-                                         <td>{d.property_id}</td>
-                                         <td>{d.request_date}</td>
-                                         <td>
-                                             <Link to={`/requestsforbuying/edit/${d.id}`} className='btn btn-info' >Edit</Link>
-                                             <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Decline</button>
-                                         </td>
-                                     </tr>
-                                 )}
+                <tr key={d.id}>
+                        
+                        <td>{d.id}</td>
+                        <td>{d.client_name}</td>
+                        <td>{d.client_id}</td>
+                        <td>{d.email}</td>
+                        <td>{d.phone}</td>
+                        <td>{d.property?.property_title}</td>
+                        <td>{d.request_date}</td>
+                        <td>
+                            <Link to={`/requestsforbuying/edit/${d.id}`} className='btn btn-info' >Edit</Link>
+                            <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Decline</button>
+                        </td>
+                    </tr>
+                )}
               </tbody>
             </table>
         </div>
