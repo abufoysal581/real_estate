@@ -18,10 +18,12 @@ import Invoices from './pages/Invoices';
 import Clients from './pages/Clients';
 import Catagory from './pages/Catagory';
 import CatagoryAdd from './pages/Catagory/CatagoryAdd';
-import Allocations from './pages/Allocations'
+import Allocations from './pages/Allocations';
+import AcceptBuy from './pages/Property_request/For_buying/AcceptBuy';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Protected from './components/protected';
+import AcceptRent from './pages/Property_request/For_rent/AcceptRent';
 function App() {
   const isSignedIn = localStorage.getItem("access_token") || false;
   return (
@@ -121,6 +123,17 @@ function App() {
           <Route path={"/allocations"} element={
             <Protected isSignedIn={isSignedIn} >
               <Allocations />
+            </Protected>
+          } />
+
+          <Route path={"/Property_request/For_buying/Accept/:id"} element={
+            <Protected isSignedIn={isSignedIn} >
+              <AcceptBuy />
+            </Protected>
+          } />
+          <Route path={"/Property_request/For_rent/Accept/:id"} element={
+            <Protected isSignedIn={isSignedIn} >
+              <AcceptRent />
             </Protected>
           } />
         

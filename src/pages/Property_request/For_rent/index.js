@@ -3,7 +3,7 @@ import axios from 'axios';
 import AdminLayout from '../../../layouts/AdminLayout'
 import { Link } from 'react-router-dom';
 
-function For_rent() {
+function For_buying() {
 
     const[data, setData]=useState([]);
     useEffect(() => {
@@ -11,12 +11,12 @@ function For_rent() {
     }, []);
 
     function getDatas() {
-        axios.get(`${process.env.REACT_APP_API_URL}/requestsforrent`).then(function(response) {
+        axios.get(`${process.env.REACT_APP_API_URL}/requestsforbuying?requesttype=${'rent'}`).then(function(response) {
             setData(response.data.data);
         });
     }
     const deleteData = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_URL}/requestsforrent/${id}`).then(function(response){
+        axios.delete(`${process.env.REACT_APP_API_URL}/requestsforbuying/${id}`).then(function(response){
             getDatas();
         });
     }
@@ -25,52 +25,48 @@ function For_rent() {
     <AdminLayout>
 
 <div className="container mt-5">
-        <h2 className="mb-4">Property Rental Requests</h2>
+        <h2 className="mb-4">Property Rent Requests</h2>
         <div className="table-responsive">
             <table className="table table-bordered table-hover">
                 <thead className="table-dark">
                     <tr>
-                        <th>#</th>
+                    <th>#</th>
                         <th>Client Name</th>
                         <th>Client ID</th>
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Requested Property</th>
-                        <th>Requested Property ID</th>
                         <th>Request Date</th>
-                        <th>Rental Duration</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {/* <!-- Request Item 1 --> */}
-                    {data && data.map((d, key) =>
-                                        <tr key={d.id}>
-                                         
-                                            <td>{d.id}</td>
-                                            <td>{d.client_name}</td>
-                                            <td>{d.client_id}</td>
-                                            <td>{d.email}</td>
-                                            <td>{d.phone}</td>
-                                            <td>{d.property_title}</td>
-                                            <td>{d.property_id}</td>
-                                            <td>{d.request_date}</td>
-                                            <td>{d.rental_duration}</td>
-                                            
-                                            <td>
-                                                <Link to={`/requestsforrent/edit/${d.id}`} className='btn btn-info' >Edit</Link>
-                                                <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Decline</button>
-                                            </td>
-                                        </tr>
-                                    )}
-                 </tbody>
+
+                {data && data.map((d, key) =>
+                <tr key={d.id}>
+                        
+                        <td>{d.id}</td>
+                        <td>{d.client_name}</td>
+                        <td>{d.client_id}</td>
+                        <td>{d.email}</td>
+                        <td>{d.phone}</td>
+                        <td>{d.property?.property_title}</td>
+                        <td>{d.request_date}</td>
+                        <td>
+                            <Link to={`/Property_request/For_rent/Accept/${d.id}`} className='btn btn-info' >Accept</Link>
+                            <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Decline</button>
+                        </td>
+                    </tr>
+                )}
+              </tbody>
             </table>
         </div>
     </div>
+
   
 
     </AdminLayout>       
   )
 }
 
-export default For_rent
+export default  For_buying

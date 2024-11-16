@@ -94,12 +94,12 @@ function Sidebar() {
               </ul>
             </div>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a>
               <Link to="/Allocations" className="waves-effect waves-dark" aria-expanded="false"><i
                 className="fa fa-question-circle"></i><span className="hide-menu">Allocations</span></Link>
             </a>
-          </li>
+          </li> */}
           <li className="nav-item">
             <a data-bs-toggle="collapse" href="#sidebarLayouts">
               <i className="fas fa-th-list"></i>
@@ -139,7 +139,7 @@ function Sidebar() {
               </ul>
             </div>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a data-bs-toggle="collapse" href="#tables">
               <i className="fas fa-table"></i>
               <p>Rented property</p>
@@ -153,11 +153,11 @@ function Sidebar() {
                 </li>
               </ul>
             </div>
-          </li>
+          </li> */}
           <li className="nav-item">
             <a data-bs-toggle="collapse" href="#maps">
               <i className="fas fa-map-marker-alt"></i>
-              <p>Sold property</p>
+              <p>Property Allocations</p>
               <span className="caret"></span>
             </a>
             <div className="collapse" id="maps">
@@ -165,7 +165,7 @@ function Sidebar() {
                 <li>
                   <a>
                    <Link to="/Soldproperty" className="waves-effect waves-dark" aria-expanded="false"><i
-                className="fa fa-question-circle"></i><span className="hide-menu">Sold property list</span></Link>
+                className="fa fa-question-circle"></i><span className="hide-menu">Accepted property list</span></Link>
                   </a>
                 </li>
               </ul>

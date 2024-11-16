@@ -1,72 +1,72 @@
-import React from 'react'
-import AdminLayout from '../../layouts/AdminLayout'
+import React, { useEffect, useState } from 'react';
+import axios from '../../components/axios';
+import AdminLayout from '../../layouts/AdminLayout';
+import { Link } from 'react-router-dom';
 
 function Clients() {
-  return (
+
+
+  const[data, setData]=useState([]);
+  useEffect(() => {
+      getDatas();
+  }, []);
+
+  function getDatas() {
+      axios.get(`${process.env.REACT_APP_API_URL}/clients`).then(function(response) {
+          setData(response.data.data);
+      });
+  }
+  const deleteData = (id) => {
+      axios.delete(`${process.env.REACT_APP_API_URL}/clients/${id}`).then(function(response){
+          getDatas();
+      });
+  }
+return (
+
     <AdminLayout>
 
 <div class="container mt-5">
-    <h2 class="text-center">Client List</h2>
-
-    <div class="card mt-4">
-      <div class="card-body">
+        <h2 class="mb-4">Client list</h2>
         <div class="table-responsive">
-          <table class="table table-hover table-bordered">
-            <thead class="table-dark">
-              <tr>
-                <th>Client ID</th>
-                <th>Client Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* <!-- Example Row --> */}
-              <tr>
-                <td>C001</td>
-                <td>John Doe</td>
-                <td>johndoe@example.com</td>
-                <td>(123) 456-7890</td>
-                <td>123 Main St, Anytown, USA</td>
-                <td>
-                  <a href="#" class="btn btn-primary btn-sm">View</a>
-                  <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                  <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                </td>
-              </tr>
-              <tr>
-                <td>C002</td>
-                <td>Jane Smith</td>
-                <td>janesmith@example.com</td>
-                <td>(098) 765-4321</td>
-                <td>456 Elm St, Othertown, USA</td>
-                <td>
-                  <a href="#" class="btn btn-primary btn-sm">View</a>
-                  <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                  <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                </td>
-              </tr>
-              <tr>
-                <td>C003</td>
-                <td>Michael Johnson</td>
-                <td>michaelj@example.com</td>
-                <td>(555) 123-4567</td>
-                <td>789 Maple St, Thistown, USA</td>
-                <td>
-                  <a href="#" class="btn btn-primary btn-sm">View</a>
-                  <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                  <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                </td>
-              </tr>
-              {/* <!-- Additional rows here --> */}
-            </tbody>
-          </table>
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data && data.map((d, key) =>
+                        <tr key={d.id}>
+                            
+                            <td>{d.id}</td>
+                            <td>{d.client_name}</td>
+                            {/* <td>
+                                {
+                                    d?.image?.split(',').map((src, i) => (
+                                        <img src={`${process.env.REACT_APP_BACKEND_URL}/clients/${src}`} alt="No Image" width="100%" height="50%" />
+                                    ))
+                                }
+                            </td> */}
+                            <td>{d.email}</td>
+                            <td>{d.phone}</td>
+                            <td>{d.address}</td>
+                            <td>
+                                <Link to={`/property/edit/${d.id}`} className='btn btn-info' >Edit</Link>
+                                <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Delete</button>
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
         </div>
-      </div>
     </div>
-  </div>
+
 
 
 

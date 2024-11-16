@@ -53,7 +53,7 @@ function For_buying() {
                         <td>{d.property?.property_title}</td>
                         <td>{d.request_date}</td>
                         <td>
-                            <Link to={`/requestsforbuying/edit/${d.id}`} className='btn btn-info' >Edit</Link>
+                            <Link to={`/Property_request/For_buying/Accept/${d.id}`} className='btn btn-info' >Accept</Link>
                             <button type='button' onClick={() => deleteData(d.id)} className='btn btn-danger'>Decline</button>
                         </td>
                     </tr>

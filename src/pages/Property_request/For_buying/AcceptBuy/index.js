@@ -1,17 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../../../components/axios';
-import AdminLayout from '../../../layouts/AdminLayout'
+import axios from '../../../../components/axios';
+import AdminLayout from '../../../../layouts/AdminLayout'
 import { useNavigate } from 'react-router-dom';
 import {useParams} from "react-router-dom";
 
-function Editrequest() {
+function AcceptBuy() {
 
     const userdata=JSON.parse(localStorage.getItem('front_userdata'));
-    const { property_id } = useParams();
-    const [inputs, setInputs] = useState({client_id:userdata.id,property_id:property_id,client_name:userdata.client_name,email:userdata.email,phone:userdata.phone});
+    const { id } = useParams();
+    const [inputs, setInputs] = useState([]);
     const navigate=useNavigate();
     const [selectedFiles, setSelectedFiles] = useState([]); // For image
-  
+
+    function getDatas(){
+        axios.get(`${process.env.REACT_APP_API_URL}/requestsforbuying/${id}`).then(function(response) {
+            setInputs(response.data.data);
+            
+            setInputs(values => ({...values, ['total_amount']: response.data.data.property?.price}));
+        });
+    }
+
+    useEffect(() => {
+        if(id){
+            getDatas();
+        }
+    }, []);
+
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -25,9 +39,7 @@ function Editrequest() {
     const handleSubmit = async(e) => {
       e.preventDefault();
       console.log(inputs)
-
       const formData = new FormData();
-
       
       try{
           let apiurl=`/requestsforbuying/create`;
@@ -57,7 +69,7 @@ function Editrequest() {
 
 <div>
   <div className="container mt-5">
-        <h2>Edit request</h2>
+        <h2>Accept Buy Request</h2>
         <form onSubmit={handleSubmit}>
             <div className="mb-3">
                 <label for="name" className="form-label">Full Name</label>
@@ -70,22 +82,6 @@ function Editrequest() {
             <div className="mb-3">
                 <label for="phone" className="form-label">Phone Number</label>
                 <input type="text" className="form-control" id="phone" defaultValue={inputs.phone} name="phone" onChange={handleChange}  required/>
-            </div>
-            <div className="mb-3">
-                <label for="phone" className="form-label">Rent From</label>
-                <input type="text" className="form-control" id="rent_from" defaultValue={inputs.rent_from} name="rent_from" onChange={handleChange}  required/>
-            </div>
-            <div className="mb-3">
-                <label for="phone" className="form-label">Rent To</label>
-                <input type="text" className="form-control" id="rent_to" defaultValue={inputs.rent_to} name="rent_to" onChange={handleChange}  required/>
-            </div>
-            <div className="mb-3">
-                <label for="phone" className="form-label">Total Installments</label>
-                <input type="text" className="form-control" id="total_installments" defaultValue={inputs.total_installments} name="total_installments" onChange={handleChange}  required/>
-            </div>
-            <div className="mb-3">
-                <label for="phone" className="form-label">Remaining Installments</label>
-                <input type="text" className="form-control" id="remaining_installments" defaultValue={inputs.remaining_installments} name="remaining_installments" onChange={handleChange}  required/>
             </div>
             <div className="mb-3">
                 <label for="phone" className="form-label">Total Amount</label>
@@ -112,4 +108,4 @@ function Editrequest() {
   )
 }
 
-export default Editrequest
+export default AcceptBuy

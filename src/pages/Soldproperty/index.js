@@ -38,7 +38,7 @@ function Soldproperty() {
                 <tr>
                     <th>#</th>
                     <th>Property ID</th>
-                    <th>Property Address</th>
+                    <th>Property Title</th>
                     <th>Client Name</th>
                     <th>Client ID</th>
                     <th>Email</th>
@@ -55,11 +55,9 @@ function Soldproperty() {
                 {/* <!-- Sample Row 1 --> */}
                 {data && data.map((d, key) =>
                                         <tr key={d.id}>
-                                         
                                             <td>{d.id}</td>
-                                            <td></td>
+                                            <td>{d.property_id}</td>
                                             <td>{d.property_title}</td>
-                                            <td>{d.property_address}</td>
                                             <td>{d.client_name}</td>
                                             <td>{d.client_id}</td>
                                             <td>{d.email}</td>
