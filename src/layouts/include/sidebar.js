@@ -196,13 +196,6 @@ function Sidebar() {
           </li>
 
           <li className="nav-item">
-            <a href="../../documentation/index.html">
-              <i className="fas fa-file"></i>
-              <Link to="/Invoices" className="waves-effect waves-dark" aria-expanded="false"><i
-                className="fa fa-question-circle"></i><span className="hide-menu">Invoices</span></Link>
-            </a>
-          </li>
-          <li className="nav-item">
             <a>
               <i className="fas fa-bars"></i>
               <Link to="/Clients" className="waves-effect waves-dark" aria-expanded="false"><i

@@ -24,7 +24,7 @@ function Soldproperty() {
     <AdminLayout>
 
 <div class="container mt-5">
-    <h1 class="mb-4">Sold Properties List</h1>
+    <h1 class="mb-4">Allocated Properties List</h1>
 
     {/* <!-- Add Property Button --> */}
     <div class="mb-3">
@@ -43,11 +43,11 @@ function Soldproperty() {
                     <th>Client ID</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Total Installments</th>
-                    <th>Paid Amount</th>
+                    <th>Rental Duration</th>
+                    
                     <th>Total Amount</th>
+                    <th>Paid Amount</th>
                     <th>Remaining Amount</th>
-                    <th>Remaining Installments</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -63,8 +63,8 @@ function Soldproperty() {
                                             <td>{d.email}</td>
                                             <td>{d.phone}</td>
                                             <td>{d.rental_duration}</td>
-                                            <td>{d.total_installments}</td>
-                                            <td>{d.remaining_installments}</td>
+                                        
+                                           
                                             <td>{d.total_amount}</td>
                                             <td>{d.paid_amount}</td>
                                             <td>{d.remaining_amount}</td>

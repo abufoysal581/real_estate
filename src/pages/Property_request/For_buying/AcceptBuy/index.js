@@ -35,14 +35,18 @@ function AcceptBuy() {
     const handleFileChange = (e) => {
         setSelectedFiles(e.target.files);
     }
-
+    const getDue= (e)=>{
+        let pay=e.target.value;
+        let total=inputs.total_amount;
+        setInputs(values => ({...values, ['remaining_amount']: (total - pay)}));
+    }
     const handleSubmit = async(e) => {
       e.preventDefault();
       console.log(inputs)
       const formData = new FormData();
       
       try{
-          let apiurl=`/requestsforbuying/create`;
+          let apiurl=`/soldpropertylist/create`;
           
           let response= await axios({
               method: 'post',
@@ -89,7 +93,7 @@ function AcceptBuy() {
             </div>
             <div className="mb-3">
                 <label for="phone" className="form-label">Paid Amount</label>
-                <input type="text" className="form-control" id="paid_amount" defaultValue={inputs.paid_amount} name="paid_amount" onChange={handleChange}  required/>
+                <input type="text" className="form-control" id="paid_amount" defaultValue={inputs.paid_amount} name="paid_amount"  onChange={(e)=>{ handleChange(e);getDue(e) }}  required/>
             </div>
             <div className="mb-3">
                 <label for="phone" className="form-label">Remaining Amount</label>

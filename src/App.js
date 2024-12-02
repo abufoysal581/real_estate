@@ -14,11 +14,9 @@ import Rentedproperty from './pages/Rentedproperty';
 import Soldproperty from './pages/Soldproperty';
 import Paymentssold from './pages/Paymentssold';
 import Paymentsrented from './pages/Paymentsrented';
-import Invoices from './pages/Invoices';
 import Clients from './pages/Clients';
-import Catagory from './pages/Catagory';
-import CatagoryAdd from './pages/Catagory/CatagoryAdd';
-import Allocations from './pages/Allocations';
+
+
 import AcceptBuy from './pages/Property_request/For_buying/AcceptBuy';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -96,11 +94,7 @@ function App() {
             </Protected>
           } />
 
-          <Route path={"/invoices"} element={
-            <Protected isSignedIn={isSignedIn} >
-              <Invoices />
-            </Protected>
-          } />
+         
           
           <Route path={"/clients"} element={
             <Protected isSignedIn={isSignedIn} >
@@ -108,23 +102,11 @@ function App() {
             </Protected>
           } />
 
-          <Route path={"/catagory"} element={
-            <Protected isSignedIn={isSignedIn} >
-              <Catagory />
-            </Protected>
-          } />
 
-          <Route path={"/catagory/catagoryadd"} element={
-            <Protected isSignedIn={isSignedIn} >
-              <CatagoryAdd />
-            </Protected>
-          } />
 
-          <Route path={"/allocations"} element={
-            <Protected isSignedIn={isSignedIn} >
-              <Allocations />
-            </Protected>
-          } />
+          
+
+         
 
           <Route path={"/Property_request/For_buying/Accept/:id"} element={
             <Protected isSignedIn={isSignedIn} >
