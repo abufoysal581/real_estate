@@ -31,7 +31,7 @@ return (
             <table class="table table-bordered table-hover">
                 <thead class="table-dark">
                     <tr>
-                        <th>#</th>
+                       
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
